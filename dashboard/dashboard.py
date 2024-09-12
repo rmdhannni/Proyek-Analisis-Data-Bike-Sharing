@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import os
 import streamlit as st
 
 # Menyediakan informasi identitas
@@ -76,3 +76,11 @@ st.header('Deteksi Anomali')
 threshold = hour_df['cnt'].quantile(0.95)
 anomalies = hour_df[hour_df['cnt'] > threshold]
 st.write(anomalies[['dteday', 'hr', 'cnt']])
+
+
+
+# Cek jika file ada
+if os.path.exists('../data/hour.csv'):
+    hour_df = pd.read_csv('../data/hour.csv')
+else:
+    st.error("File 'hour.csv' tidak ditemukan.")
