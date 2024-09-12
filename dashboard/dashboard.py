@@ -5,7 +5,7 @@ import seaborn as sns
 import os
 
 # Mengatur path file data
-DATA_PATH = '../data/'
+DATA_PATH = 'data/'
 
 # Cek jika file ada
 hour_csv_path = os.path.join(DATA_PATH, 'hour.csv')
