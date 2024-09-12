@@ -3,39 +3,36 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-import streamlit as st
 
 # Mengatur path file data
 DATA_PATH = '../data/'
 
 # Cek jika file ada
-if os.path.exists(f'{DATA_PATH}hour.csv'):
-    hour_df = pd.read_csv(f'{DATA_PATH}hour.csv')
+hour_csv_path = os.path.join(DATA_PATH, 'hour.csv')
+day_csv_path = os.path.join(DATA_PATH, 'day.csv')
+
+if os.path.exists(hour_csv_path) and os.path.exists(day_csv_path):
+    hour_df = pd.read_csv(hour_csv_path)
+    day_df = pd.read_csv(day_csv_path)
 else:
-    st.error("File 'hour.csv' tidak ditemukan.")
-
-# Lanjutkan dengan kode lainnya
-
-
-# Menyediakan informasi identitas
-def display_sidebar():
-    st.sidebar.title("About Me")
-    st.sidebar.write("Yusuf Rahmdhani Asy'Ari")
-    st.sidebar.write("ggdani137@gmail.com") 
-    st.sidebar.write("@rmdhannni") 
-
-# Memanggil fungsi untuk menampilkan sidebar
-display_sidebar()
-
-
-# Memuat data
-hour_df = pd.read_csv('../data/hour.csv')
-day_df = pd.read_csv('../data/day.csv')
+    st.error("File 'hour.csv' atau 'day.csv' tidak ditemukan.")
+    st.stop()
 
 # Konversi kolom 'dteday' menjadi tipe datetime
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 
+# Fungsi untuk menampilkan sidebar
+def display_sidebar():
+    st.sidebar.title("About Me")
+    st.sidebar.write("Yusuf Rahmdhani Asy'Ari")
+    st.sidebar.write("ggdani137@gmail.com")
+    st.sidebar.write("@rmdhannni")
+
+# Memanggil fungsi untuk menampilkan sidebar
+display_sidebar()
+
+# Judul aplikasi
 st.title('Analisis Data Bike Sharing')
 
 # Statistik Deskriptif
@@ -88,7 +85,3 @@ st.header('Deteksi Anomali')
 threshold = hour_df['cnt'].quantile(0.95)
 anomalies = hour_df[hour_df['cnt'] > threshold]
 st.write(anomalies[['dteday', 'hr', 'cnt']])
-
-
-
-
