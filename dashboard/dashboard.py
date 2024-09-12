@@ -91,8 +91,4 @@ st.write(anomalies[['dteday', 'hr', 'cnt']])
 
 
 
-# Cek jika file ada
-if os.path.exists('../data/hour.csv'):
-    hour_df = pd.read_csv('../data/hour.csv')
-else:
-    st.error("File 'hour.csv' tidak ditemukan.")
+
