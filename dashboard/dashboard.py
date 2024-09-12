@@ -5,6 +5,18 @@ import seaborn as sns
 import os
 import streamlit as st
 
+# Mengatur path file data
+DATA_PATH = '../data/'
+
+# Cek jika file ada
+if os.path.exists(f'{DATA_PATH}hour.csv'):
+    hour_df = pd.read_csv(f'{DATA_PATH}hour.csv')
+else:
+    st.error("File 'hour.csv' tidak ditemukan.")
+
+# Lanjutkan dengan kode lainnya
+
+
 # Menyediakan informasi identitas
 def display_sidebar():
     st.sidebar.title("About Me")
