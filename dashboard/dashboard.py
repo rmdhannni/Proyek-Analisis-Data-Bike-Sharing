@@ -7,8 +7,8 @@ from sklearn.cluster import KMeans
 # Fungsi untuk memuat data
 @st.cache_data
 def load_data():
-    hour_df = pd.read_csv('../data/hour.csv')
-    day_df = pd.read_csv('../data/day.csv')
+    hour_df = pd.read_csv('data/hour.csv')
+    day_df = pd.read_csv('data/day.csv')
     return hour_df, day_df
 
 # Sidebar
